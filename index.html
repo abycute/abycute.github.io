@@ -1,1 +1,45 @@
-Hello, World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none; /* Hide iframe initially */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="dynamic-iframe"></iframe>
+    <script>
+        const urls = [
+            'https://www.google.com',
+            'https://www.facebook.com',
+            'https://www.youtube.com'
+        ];
+
+        function updateIframe() {
+            const iframe = document.getElementById('dynamic-iframe');
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            iframe.src = urls[randomIndex];
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('dynamic-iframe');
+            updateIframe(); // Initial call to set the first URL
+            iframe.style.display = 'block'; // Show iframe when document is ready
+            setInterval(updateIframe, 30000);
+        });
+    </script>
+</body>
+</html>
