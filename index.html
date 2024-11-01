@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aby Cute</title>
     <style>
         body, html {
             margin: 0;
@@ -22,17 +22,44 @@
 <body>
     <iframe id="dynamic-iframe"></iframe>
     <script>
-        // const urls = [
-        //     'https://www.profitablecpmrate.com/e84k42y9?key=67e11a89ba88e8684b6445b929ae9706',
-        //     'https://www.profitablecpmrate.com/w54mk11p?key=ad0984e1f0049992f4c9e5608a54090d',
-        //     'https://www.profitablecpmrate.com/tkruyvnn?key=36c8ba47edc09d3ebe4cdbbe48373792'
-        // ];
-        const urls = []
+        const urls = [
+            'https://www.profitablecpmrate.com/tkruyvnn?key=36c8ba47edc09d3ebe4cdbbe48373792',
+            'https://www.profitablecpmrate.com/w54mk11p?key=ad0984e1f0049992f4c9e5608a54090d',
+            'https://www.profitablecpmrate.com/e84k42y9?key=67e11a89ba88e8684b6445b929ae9706'
+        ];
 
         function updateIframe() {
             const iframe = document.getElementById('dynamic-iframe');
             const randomIndex = Math.floor(Math.random() * urls.length);
             iframe.src = urls[randomIndex];
+            iframe.onload = () => {
+                interactWithIframe();
+                scrollIframe();
+            }; // Call interaction and scroll functions after iframe loads
+        }
+
+        function interactWithIframe() {
+            const iframe = document.getElementById('dynamic-iframe');
+            try {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                // Example interaction: Change background color of iframe body
+                iframeDocument.body.style.backgroundColor = 'lightblue';
+            } catch (e) {
+                console.error('Cannot interact with iframe content due to cross-origin restrictions.');
+            }
+        }
+
+        function scrollIframe() {
+            const iframe = document.getElementById('dynamic-iframe');
+            try {
+                const iframeWindow = iframe.contentWindow;
+                iframeWindow.scrollTo({
+                    top: 100,
+                    behavior: 'smooth'
+                }); // Smooth scroll down 100 pixels
+            } catch (e) {
+                console.error('Cannot scroll iframe content due to cross-origin restrictions.');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
